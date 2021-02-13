@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Form</title>
+        <link rel="stylesheet" href="styles.css">
+        <!---Supposed to send an alert saying thanks but um PHP don't want to work-->
+        <script>
+            function returnInfo() {
+                var x = document.forms["myForm"]["fname"].value;
+                alert("Thank you for submitting your info" + x)
+            }
+        </script>
+    </head>
+    <body>
+        <!---This doesn't work, because I don't know how to do PHP , the form works it just doesn't have a server to process it-->
+        <h1 class = AKB48>New Extracurricular Submissions</h1>
+        <form  method="post" onsubmit="return validateForm()">
+            <label for= "fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" required><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" required><br>
+            <label for="cname">Club/Extracurricular name:</label><br>
+            <input type="text" id="cname" name="cname" required><br>
+            <label for="sponsor">Teacher/Sponsor:</label><br>
+            <input type="text" id="sponsor" name="sponsor" required><br>
+            <label for="email">Your email:</label><br>
+            <input type="email" id="email" name="email" required> <br>
+            <input type = "submit" value = "Submit"> 
+        </form>
+        
+    </body>
+</html>
