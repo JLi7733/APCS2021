@@ -4,7 +4,7 @@
 #There are many more differences between chess and shogi, so I'd reccomend one to read more about it here:
 #https://www.shogi.cz/en/rules
 
-#Where you left off last dum dum
+#Where you left off last dum dum:
 #Finally done with all the pieces classes, now go work on movement and taking pieces
 
 
