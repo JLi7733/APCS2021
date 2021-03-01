@@ -12,33 +12,68 @@
 
 #The general class of piece that all other pieces will inherit from
 class Piece:
-    def __init__(self, team, xpos, ypos, promoted, board):
+    def __init__(self, team, position, promoted, board):
         self.team = team
-        self.xPos = xpos
-        self.yPos = ypos
+        self.position = position
         self.promoted = promoted
         self.board = board
 
 #Pawn Piece
 class Pawn(Piece):
-    def __init__(self, team, xpos, ypos, promoted, board):
-        super().__init__(team, xpos, ypos, promoted, board)
+    def __init__(self, team, position, promoted, board):
+        super().__init__(team, position, promoted, board)
         self.name = Pawn
     
     #A Pawn's valid moves
     def validMoves(self):
-        x = self.xPos
-        y = self.yPos
+        #Defining the variables we'll need
+        moves = []
+        temp = self.position
+        #Storing the values for x and y
+        x = temp[0]
+        y = temp[1]
+        #Check if it's promoted or not
         if(self.promoted):
-            if(self.team == "white"):
-                return
+            #Check which team it's on
+            moves = gold(x, y, self.team)
         else:
             if(self.team == "white"):
-                return(x, y+1)
+                moves.append([x,y+1])            
             else:
-                return(x, y-1)
+                moves.append([x,y-1])
+        return(moves)
 
 #Step 2, developing movement of pieces
+
+#Let's check if your moves are even valid
+def onBoard(moves):
+    for i in moves:
+        x = i[0]
+        y = i[1]
+        if(x < 0 or x > 8 or y < 0 or y > 8):
+            moves.remove(i)
+    return(moves)
+
+#Since when promoted a lot of pieces gain the moves of a gold general
+#Instead of copypasting i made a function for that type of moveset
+def gold(x, y, side):
+    moves = []
+    if (side == "white"):
+        moves.append([x, y+1])
+        moves.append([x+1, y+1])
+        moves.append([x-1, y+1])
+        moves.append([x-1, y])
+        moves.append([x+1, y])
+        moves.append([x, y-1])
+    else:
+        moves.append([x, y-1])
+        moves.append([x+1, y-1])
+        moves.append([x-1, y-1])
+        moves.append([x-1, y])
+        moves.append([x+1, y])
+        moves.append([x, y+1]) 
+    return moves
+
 
 
 #Step 3, promotion
@@ -61,7 +96,7 @@ board = []
 
 #main program over here
 
-p1 = Pawn("white", 1, 1, False, True)
-x, y= p1.validMoves()
-print(x," ", y)
+p1 = Pawn("white", [1,1], True, True)
+temp = p1.validMoves()
+print(temp)
 
