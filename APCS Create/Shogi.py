@@ -7,6 +7,10 @@
 #Where you left off last dum dum:
 #Finally done with all the pieces classes, now go work on movement and taking pieces
 
+import pygame
+from pygame.locals import *
+
+pygame.init()
 
 #Step 1, defining your pieces
 
