@@ -17,6 +17,9 @@ class Piece:
         self.position = position
         self.promoted = promoted
         self.board = board
+    def move(self, newPos):
+        self.position = newPos
+
 
 #Pawn Piece
 class Pawn(Piece):
@@ -205,17 +208,6 @@ class King(Piece):
 
         return(moves)
 
-#Step 2, developing movement of pieces
-
-#Let's check if your moves are even on the board
-def onBoard(moves):
-    for i in moves:
-        x = i[0]
-        y = i[1]
-        if(x < 0 or x > 8 or y < 0 or y > 8):
-            moves.remove(i)
-    return(moves)
-
 #Since when promoted a lot of pieces gain the moves of a gold general
 #Instead of copypasting i made a function for that type of moveset
 def gold(x, y, side):
@@ -287,6 +279,36 @@ def diagonals(coord, size):
         coords.append([row, col])
 
     return coords
+
+
+#Step 2, developing movement of pieces
+
+#Let's check if your moves are even on the board
+def onBoard(moves):
+    for i in moves:
+        x = i[0]
+        y = i[1]
+        if(x < 0 or x > 8 or y < 0 or y > 8):
+            moves.remove(i)
+    return(moves)
+
+#The actual move function, aka moving and taking pieces
+def movePiece(piece, finalPos, board):
+    #First let's check is there another piece there?
+    x = finalPos[0]
+    y = finalPos[1]
+    if(board[x][y]):
+        print("yeet")
+
+    #Ok, so let's get the piece we're moving and the place it's moving and do that
+    piece.move(finalPos)
+
+
+
+    
+
+
+
 
 #Step 3, promotion
 
