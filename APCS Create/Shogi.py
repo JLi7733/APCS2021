@@ -7,12 +7,7 @@
 #Where you left off last dum dum:
 #Finally done with all the pieces classes, now go work on movement and taking pieces
 
-import pygame
-from pygame.locals import *
-
 import numpy as np
-
-pygame.init()
 
 #Step 1, defining your pieces
 
@@ -363,6 +358,6 @@ def displayBoard(board):
 
 
 #main program over here
-displayBoard(board)
 
-x = input("Which piece you got and where")
+x = input("Which piece you got and where: ")
+print(x)
