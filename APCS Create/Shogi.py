@@ -10,6 +10,8 @@
 import pygame
 from pygame.locals import *
 
+import numpy as np
+
 pygame.init()
 
 #Step 1, defining your pieces
@@ -296,16 +298,21 @@ def onBoard(moves):
             moves.remove(i)
     return(moves)
 
+
+
 #The actual move function, aka moving and taking pieces
 def movePiece(piece, finalPos, board):
-    #First let's check is there another piece there?
+    #First let's check what is the piece
+    type = piece.name
     x = finalPos[0]
     y = finalPos[1]
-    if(board[x][y]):
-        print("yeet")
+
+    if(type == "pawn"):
+        if(board[x][y].contains(Piece)):
+            print ("yeet")
+
 
     #Ok, so let's get the piece we're moving and the place it's moving and do that
-    piece.move(finalPos)
 
 
 
@@ -321,20 +328,41 @@ def movePiece(piece, finalPos, board):
 
 
 #Step 5 drawing the board and hands
-
-
-#Step 6, making it interactive and making a GUI
-
-#These are the variables and arrays we'll use to keep our game running and store our pieces
 turn = 0
 whiteHand = []
 blackHand = []
-board = []
+board = np.zeros((9,9))
+
+#Some basic values, pawn = 1, lance = 2, knight = 3, bishop = 4, rook = 5, silver = 6, gold = 7, king = 8
+#Spawn some pawns
+for x in range (0,9):
+    board[2][x] = 1
+    board[6][x] = 1
+#Spawn the Rooks
+board[0][0] = 2
+board[0][8] = 2
+board[8][0] = 2
+board[8][8] = 2
+
+#Step 6, making it interactive and making a GUI
+def displayBoard(board):
+    for i in board:
+        for x in i:
+            if x == 2:
+                print("|L|", end = " ")
+            elif x == 0:
+                print("| |", end = " ")
+            elif x == 1:
+                print("|P|", end = " ")
+            elif x == 3:
+                print("|K|", end = " ")
+        print("")
+        
+
+#These are the variables and arrays we'll use to keep our game running and store our pieces
 
 
 #main program over here
+displayBoard(board)
 
-p1 = Bishop(True, [4,4], True, True)
-temp = p1.validMoves()
-print(temp)
-
+x = input("Which piece you got and where")
